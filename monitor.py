@@ -76,13 +76,13 @@ class Stats(Ui_Form):
 
     @staticmethod
     def standard_net_speed(net_bytes: int):
-        # xxxB/S
+        # xx.xB/S or xxxB/S
         if net_bytes < 1000:
             if net_bytes < 100:
                 return " %sB/S" % str(net_bytes)
             else:
                 return "%sB/S" % str(net_bytes)
-        # xx.xKB/S or xxxKB/S
+
         elif net_bytes >> 10 < 1000:
             if net_bytes // 1024 < 100:
                 return "%.1fKB/S" % (net_bytes / 1024)

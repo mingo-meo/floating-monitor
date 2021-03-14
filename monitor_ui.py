@@ -198,8 +198,6 @@ class Ui_Form(QWidget, object):
         font.setKerning(False)
 
         Form.resize(self.window_width, self.window_height)
-        #Form.setStyleSheet(u"background-color: rgb(89, 89, 89)")
-        # Form.setStyleSheet(u"background-color: rgb(60, 60, 60)")
         Form.setStyleSheet(u"background-color: rgb(50, 50, 50)")
 
         self.cpu_gui = QLabel(Form)
