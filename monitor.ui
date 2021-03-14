@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>214</width>
+    <height>141</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(0, 0, 0);</string>
+  </property>
+  <widget class="QLabel" name="cpu_gui">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>39</y>
+     <width>22</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>1</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>false</kerning>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 170, 255);
+border: 1px solid;
+border-color: rgb(85, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>*************************************
+*******************************************
+*************************************
+***********************************
+*************************
+***********************************
+***************************************
+*******************************************
+********************************
+
+
+
+
+
+
+
+
+
+
+*********************************</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="indent">
+    <number>-3</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cpu_num">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>21</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>0%</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mem_gui">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>40</y>
+     <width>22</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>1</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>false</kerning>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(170, 255, 255);
+border: 1px solid;
+border-color: rgb(170, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>*************************************
+*******************************************
+*************************************
+***********************************
+*************************
+***********************************
+***************************************
+*******************************************
+********************************
+
+
+
+
+
+
+
+
+
+
+*********************************</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="indent">
+    <number>-3</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mem_num">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>22</y>
+     <width>18</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(170, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>99%</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="downspeed">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>68</width>
+     <height>12</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 255, 0);</string>
+   </property>
+   <property name="text">
+    <string>100.5KB/S</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="upspeed">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 170, 0);</string>
+   </property>
+   <property name="text">
+    <string>100.5KB/S</string>
+   </property>
+  </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>cpu_num</zorder>
+  <zorder>cpu_gui</zorder>
+  <zorder>mem_num</zorder>
+  <zorder>mem_gui</zorder>
+  <zorder>downspeed</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

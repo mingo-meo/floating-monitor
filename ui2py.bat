@@ -1,0 +1,1 @@
+pyside2-uic.exe monitor.ui > monitor_ui.py
