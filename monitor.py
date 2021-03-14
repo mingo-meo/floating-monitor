@@ -27,13 +27,15 @@ class Stats(Ui_Form):
         self.sent_pre = -1
         self.one_line = ''.join(['*' for i in range(40)])
 
-        self.timer = QtCore.QTimer(self)
-        self.timer.start(1000)
-        self.timer.timeout.connect(self.update_ui_label)
+        self.timer = threading.Timer(1, self.update_ui_label)
+        self.timer.start()
 
     def update_ui_label(self):
         # 开启独立线程
         threading.Thread(target=self.set_labels, daemon=True).start()
+        self.timer = threading.Timer(1, self.update_ui_label)
+        if self.ui_alive:
+            self.timer.start()
 
     def set_labels(self):
         self.set_net_speed()
@@ -57,7 +59,7 @@ class Stats(Ui_Form):
 
     def set_cpu_mem(self):
         # 整个进程尽量在1S内结束
-        cpu_percent = (psutil.cpu_percent(interval=0, percpu=False))
+        cpu_percent = (psutil.cpu_percent(interval=0.0, percpu=False))
         mem_percent = psutil.virtual_memory().percent
 
         if cpu_percent >= 100:
@@ -65,12 +67,10 @@ class Stats(Ui_Form):
         if mem_percent >= 100:
             mem_percent = 99
 
-        self.cpu_num.setText("%d" % cpu_percent + '%')
-        self.mem_num.setText("%d" % mem_percent + '%')
-
         cpu_lines = ''.join([self.one_line + '\n' for i in range(int(cpu_percent)//10 + 1)])
         mem_lines = ''.join([self.one_line + '\n' for i in range(int(mem_percent) // 10 + 1)])
-
+        self.cpu_num.setText("%d" % cpu_percent + '%')
+        self.mem_num.setText("%d" % mem_percent + '%')
         self.cpu_gui.setText(cpu_lines)
         self.mem_gui.setText(mem_lines)
 

@@ -28,6 +28,8 @@ class Ui_Form(QWidget, object):
         self.window_height = 50
         self.label_size = 'font: 13px'
         self.cpu_gui_x = 75
+        # Inform threading.Timer
+        self.ui_alive = True
 
     def enterEvent(self, event):
         self.hide_or_show('show', event)
@@ -159,6 +161,7 @@ class Ui_Form(QWidget, object):
                 self.setStyleSheet(u"background-color: black")
 
             if action == quit_action:
+                self.ui_alive = False
                 QCoreApplication.quit()
             if action == about_action:
                 # 新建MessageBox
