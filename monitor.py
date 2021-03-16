@@ -32,7 +32,9 @@ class Stats(Ui_Form):
 
     def update_ui_label(self):
         # 开启独立线程
-        threading.Thread(target=self.set_labels, daemon=True).start()
+        update_threading = threading.Thread(target=self.set_labels, daemon=True)
+        update_threading.start()
+        update_threading.join()
         self.timer = threading.Timer(1, self.update_ui_label)
         if self.ui_alive:
             self.timer.start()
