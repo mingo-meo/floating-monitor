@@ -40,7 +40,7 @@ class Monitor(QWidget):
         self.sent_pre = -1
         self.upload_bytes = 0
         self.upload_string = '↑' + '0B/S'
-        self.download_bytes = -1
+        self.download_bytes = 0
         self.download_string = '↓' + '0B/S'
         self.one_line = ''.join(['*' for i in range(40)])
         self.cpu_percent = 0
@@ -332,15 +332,27 @@ class Monitor(QWidget):
         if self.sent_pre == -1 or self.receive_pre == -1:
             self.upload_bytes = 0
             self.download_bytes = 0
-            self.sent_pre = psutil.net_io_counters().bytes_sent
-            self.receive_pre = psutil.net_io_counters().bytes_recv
+            try:
+                self.sent_pre = psutil.net_io_counters().bytes_sent
+                self.receive_pre = psutil.net_io_counters().bytes_recv
+            except RuntimeError:
+                # 如果获取失败，重新获取
+                self.sent_pre = -1
+                self.receive_pre = -1
         else:
-            self.upload_bytes = psutil.net_io_counters().bytes_sent - self.sent_pre
-            self.download_bytes = psutil.net_io_counters().bytes_recv - self.receive_pre
-            self.sent_pre += self.upload_bytes
-            self.receive_pre += self.download_bytes
-            self.upload_string = '↑' + Monitor.standard_net_speed(self.upload_bytes)
-            self.download_string = '↓' + Monitor.standard_net_speed(self.download_bytes)
+            try:
+                self.upload_bytes = psutil.net_io_counters().bytes_sent - self.sent_pre
+                self.download_bytes = psutil.net_io_counters().bytes_recv - self.receive_pre
+            except RuntimeError:
+                self.sent_pre = -1
+                self.receive_pre = -1
+                self.upload_string = '↑' + '0B/S'
+                self.download_string = '↓' + '0B/S'
+            else:
+                self.sent_pre += self.upload_bytes
+                self.receive_pre += self.download_bytes
+                self.upload_string = '↑' + Monitor.standard_net_speed(self.upload_bytes)
+                self.download_string = '↓' + Monitor.standard_net_speed(self.download_bytes)
 
     def get_cpu_mem(self):
         self.cpu_percent = (psutil.cpu_percent(interval=0.0, percpu=False))
@@ -351,8 +363,8 @@ class Monitor(QWidget):
         if self.mem_percent >= 100:
             self.mem_percent = 99
 
-        self.cpu_lines = ''.join([self.one_line + '\n' for i in range(int(self.cpu_percent) // 10 + 1)])
-        self.mem_lines = ''.join([self.one_line + '\n' for i in range(int(self.mem_percent) // 10 + 1)])
+        self.cpu_lines = ''.join([self.one_line + '\n' for i in range(int(self.cpu_percent) // 10)])
+        self.mem_lines = ''.join([self.one_line + '\n' for i in range(int(self.mem_percent) // 10)])
         self.cpu_percent_string = "%d" % self.cpu_percent + '%'
         self.mem_percent_string = "%d" % self.mem_percent + '%'
 
